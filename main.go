@@ -51,7 +51,7 @@ func Run() {
 }
 
 func main() {
-	d, err = daemon.New(name, description)
+	d, err := daemon.New(name, description)
 	if err != nil {
 		log.Println("error: ", err)
 		os.Exit(1)
