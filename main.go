@@ -2,21 +2,37 @@ package main
 
 import (
 	"fmt"
-	"log"
+	"os"
 
 	"github.com/takama/daemon"
 )
 
 func main() {
-	service, err := daemon.New("name", "description")
+
+	service, err := daemon.New("takumakumed", "takumakumemon desu")
+	usage := "Usage: takumakumed install | remove | start | stop | status"
+
 	if err != nil {
-		log.Fatal("Error: ", err)
+		fmt.Println("Error: ", err)
+		os.Exit(1)
 	}
-	status, err := service.Install()
-	if err != nil {
-		log.Fatal(status, "\nError: ", err)
+
+	if len(os.Args) > 1 {
+		command := os.Args[1]
+		switch command {
+		case "install":
+			service.Install()
+		case "remove":
+			service.Remove()
+		case "start":
+			service.Start()
+		case "stop":
+			service.Stop()
+		case "status":
+			service.Status()
+		default:
+			fmt.Println(usage)
+		}
 	}
-	fmt.Println(status)
-	for {
-	}
+
 }
