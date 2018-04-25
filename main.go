@@ -17,4 +17,6 @@ func main() {
 		log.Fatal(status, "\nError: ", err)
 	}
 	fmt.Println(status)
+	for {
+	}
 }
